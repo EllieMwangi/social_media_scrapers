@@ -1,0 +1,31 @@
+services:
+  linkedin-job-posts-service:
+    build:
+      context: ./linkedin/job_posts
+      shm_size: 2gb
+    image: linkedin-job-scraper:test
+    container_name: linkedin-job-scraper
+    volumes:
+      - /dev/shm:/dev/shm
+    env_file:
+      - ./secrets.env
+  facebook-company-data-service:
+    build:
+      context: ./facebook
+      shm_size: 2gb
+    image: facebook-company-scraper:test
+    container_name: facebook-company-scraper
+    volumes:
+      - /dev/shm:/dev/shm
+    env_file:
+      - ./secrets.env
+  linkedin-company-data-service:
+    build:
+      context: ./linkedin/company_data
+      shm_size: 2gb
+    image: linkedin-data-scraper:test
+    container_name: linkedin-data-scraper
+    volumes:
+      - /dev/shm:/dev/shm
+    env_file:
+      - ./secrets.env

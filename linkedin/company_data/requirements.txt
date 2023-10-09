@@ -1,0 +1,7 @@
+numpy
+pandas
+selenium
+bs4
+lxml
+azure-storage-blob
+undetected_chromedriver 
