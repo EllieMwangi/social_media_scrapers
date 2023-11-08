@@ -78,22 +78,17 @@ class ScraperOrchestrator:
         logging.info(f"Number of profiles to be scrapped: {data_linkedin_urls.shape}")
         logging.info(f"{data_linkedin_urls.head()}")
 
-        # Break down data file into batches
-        batch_count = 100
-        for idx, batch in enumerate(np.array_split(data_linkedin_urls, batch_count)):
-            output_file = str.replace(profiles_file_name, '.csv',f'_scrapped_data_batch_{idx}.csv')
-            for row in batch.to_dict('records'):
-                logging.info(f"Scraping about page for linkedin url: {row['linkedin_profile']}")
-                scrape_about_page(row, self.driver, output_file)
-                random_sleep = random.randint(3,6)
-                logger.info(f"Sleep for {random_sleep} seconds")
-                time.sleep(random_sleep)
-            
-            logging.info(f"Upload batch results")
-            self.upload_scraped_file(output_file)
-
-            logging.info(f"{idx+1} batches ran! {batch_count - (idx+1)} batches to go!")                                
-   
+        # Loop through URLs
+        output_file = str.replace(profiles_file_name, '.csv',f'_scrapped_data.csv')
+        for row in data_linkedin_urls.to_dict('records'):
+            logging.info(f"Scraping about page for linkedin url: {row['linkedin_profile']}")
+            scrape_about_page(row, self.driver, output_file)
+            random_sleep = random.randint(3,6)
+            logger.info(f"Sleep for {random_sleep} seconds")
+            time.sleep(random_sleep)
+        
+        logging.info(f"Upload results")
+        self.upload_scraped_file(output_file)   
         self.driver.quit()
 
     def upload_scraped_file(self, results_file_name):

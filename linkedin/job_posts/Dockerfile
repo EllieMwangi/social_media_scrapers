@@ -23,4 +23,6 @@ WORKDIR /app
 COPY . /app/
 RUN mkdir -p /app/data
 
+ENV COUNTRIES_TO_SEARCH="Ghana,Nigeria"
+
 ENTRYPOINT ["python", "app.py"]

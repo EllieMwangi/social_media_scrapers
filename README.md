@@ -1,6 +1,6 @@
 # Docker Based Scrapers for LinkedIn and Facebook
 
-This repository contains Docker-based scrapers for Facebook and LinkedIn. These scrapers are designed to extract information from business profiles and pages on both platforms for various purposes, such as data analysis, research, and more. Using these scrapers for comme By using Docker, the scrapers can be easily set up and run in isolated environments without the need for complex configuration.
+This repository contains Docker-based scrapers for Facebook and LinkedIn. These scrapers are designed to extract information from business profiles and pages on both platforms for various purposes, such as data analysis, research, and more. By using Docker, the scrapers can be easily set up and run in isolated environments without the need for complex configuration.
 
 ## Table of Contents
 - Prerequisites
@@ -35,12 +35,13 @@ git clone https://github.com/yourusername/docker-facebook-linkedin-scraper.git
         - linkedin-inputs
         - linkedin-outputs
 
+4. Upload profile links that you need scraped in the corresponding blobs. Sample files for each scraper can be found in the sample data  folder.
 
-Build the Docker containers:
-
-docker-compose build
-Start the containers:
-
-shell
-Copy code
-docker-compose up -d
+5. Build the Docker containers:
+```shell
+docker-compose build service_name
+```
+6. Start the containers:
+```shell
+docker-compose up -d service_name
+```

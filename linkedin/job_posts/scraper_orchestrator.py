@@ -49,7 +49,8 @@ class ScraperOrchestrator:
 
         logger.info(f"Generate job posts urls")
 
-        for country_name in ['Ghana', 'Nigeria']:
+        countries_to_search = os.environ.get("COUNTRIES_TO_SEARCH", "").split(",")
+        for country_name in countries_to_search:
             generate_page_urls(driver=self.driver, country=country_name)
 
     def scrape_profile_urls(self):
